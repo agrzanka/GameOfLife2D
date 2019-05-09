@@ -12,6 +12,7 @@ namespace GameOfLife2D
         public int[] id = new int[2];
         public int [,] neighbors = new int[8,2];
 
+
         public Cell()
         {
             this.Life = false;
