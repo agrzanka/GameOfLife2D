@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace GameOfLife2D
 {
@@ -38,8 +39,15 @@ namespace GameOfLife2D
             Graphics graphics = panel1.CreateGraphics();
 
             game.startBoard.setup_glider();
-
             game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+
+            for (int i=0;i<5;i++)
+            {
+                Thread.Sleep(500);
+                game.startBoard.update();
+                game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+            }
+           
 
         }
     }
