@@ -43,12 +43,76 @@ namespace GameOfLife2D
 
             for (int i=0;i<5;i++)
             {
+               
                 Thread.Sleep(500);
+                panel1.Refresh();
                 game.startBoard.update();
                 game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
             }
            
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int size = (int)numericUpDown1.Value;
+            int bH = (int)numericUpDown2.Value;
+
+            int cellSize = (size > bH) ? maxSize / size : maxSize / bH;
+
+            panel1.Width = cellSize * size;
+            panel1.Height = cellSize * bH;
+
+            panel1.Refresh();
+            Board board = new Board(size, bH);
+            Game game = new Game(board, bH, cellSize);
+
+            Pen pen = new Pen(Color.MediumVioletRed, 1f);
+            SolidBrush brush = new SolidBrush(Color.MediumVioletRed);
+            Graphics graphics = panel1.CreateGraphics();
+
+            game.startBoard.setup_oscylator();
+            game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+
+            for (int i = 0; i < 5; i++)
+            {
+
+                Thread.Sleep(500);
+                panel1.Refresh();
+                game.startBoard.update();
+                game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int size = (int)numericUpDown1.Value;
+            int bH = (int)numericUpDown2.Value;
+
+            int cellSize = (size > bH) ? maxSize / size : maxSize / bH;
+
+            panel1.Width = cellSize * size;
+            panel1.Height = cellSize * bH;
+
+            panel1.Refresh();
+            Board board = new Board(size, bH);
+            Game game = new Game(board, bH, cellSize);
+
+            Pen pen = new Pen(Color.MediumVioletRed, 1f);
+            SolidBrush brush = new SolidBrush(Color.MediumVioletRed);
+            Graphics graphics = panel1.CreateGraphics();
+
+            game.startBoard.setup_const();
+            game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+
+            for (int i = 0; i < 5; i++)
+            {
+
+                Thread.Sleep(500);
+                panel1.Refresh();
+                game.startBoard.update();
+                game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+            }
         }
     }
 }

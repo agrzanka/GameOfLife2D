@@ -18,7 +18,7 @@ namespace GameOfLife2D
             this.size = size;
 
 
-            cells = new Cell[this.boardH, this.size];
+            cells = new Cell[this.size, this.boardH];
 
             for (int i = 0; i < boardH; i++)
             {
