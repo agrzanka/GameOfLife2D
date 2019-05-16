@@ -20,9 +20,9 @@ namespace GameOfLife2D
 
             cells = new Cell[this.size, this.boardH];
 
-            for (int i = 0; i < boardH; i++)
+            for (int i = 0; i < size; i++)
             {
-                for (int s = 0; s < size; s++)
+                for (int s = 0; s < boardH; s++)
                 {
                     int[] idd = { i, s };
                     this.cells[i, s] = new Cell(idd, false, size);
@@ -53,6 +53,19 @@ namespace GameOfLife2D
 
         public void setup_random()
         {
+            Random x = new Random();
+            Random y = new Random();
+            Random k = new Random();
+
+            int kk=k.Next(1, (this.size * this.boardH - 1));
+
+            for(int i=0;i<kk;i++)
+            {
+                int xx = x.Next(0, size - 1);
+                int yy = y.Next(0, boardH - 1);
+
+                cells[xx, yy].Life = true;
+            }
 
         }
 

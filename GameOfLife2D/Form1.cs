@@ -24,6 +24,7 @@ namespace GameOfLife2D
         {
             int size = (int)numericUpDown1.Value;
             int bH = (int)numericUpDown2.Value;
+            int iterations = (int)numericUpDown3.Value;
 
             int cellSize = (size > bH) ? maxSize / size : maxSize / bH;
 
@@ -41,10 +42,10 @@ namespace GameOfLife2D
             game.startBoard.setup_glider();
             game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
 
-            for (int i=0;i<5;i++)
+            for (int i=1;i< iterations; i++)
             {
                
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 panel1.Refresh();
                 game.startBoard.update();
                 game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
@@ -57,6 +58,7 @@ namespace GameOfLife2D
         {
             int size = (int)numericUpDown1.Value;
             int bH = (int)numericUpDown2.Value;
+            int iterations = (int)numericUpDown3.Value;
 
             int cellSize = (size > bH) ? maxSize / size : maxSize / bH;
 
@@ -74,10 +76,10 @@ namespace GameOfLife2D
             game.startBoard.setup_oscylator();
             game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < iterations; i++)
             {
 
-                Thread.Sleep(500);
+                Thread.Sleep(300);
                 panel1.Refresh();
                 game.startBoard.update();
                 game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
@@ -88,6 +90,7 @@ namespace GameOfLife2D
         {
             int size = (int)numericUpDown1.Value;
             int bH = (int)numericUpDown2.Value;
+            int iterations = (int)numericUpDown3.Value;
 
             int cellSize = (size > bH) ? maxSize / size : maxSize / bH;
 
@@ -105,10 +108,42 @@ namespace GameOfLife2D
             game.startBoard.setup_const();
             game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i < iterations; i++)
             {
 
-                Thread.Sleep(500);
+                Thread.Sleep(300);
+                panel1.Refresh();
+                game.startBoard.update();
+                game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int size = (int)numericUpDown1.Value;
+            int bH = (int)numericUpDown2.Value;
+            int iterations = (int)numericUpDown3.Value;
+
+            int cellSize = (size > bH) ? maxSize / size : maxSize / bH;
+
+            panel1.Width = cellSize * size;
+            panel1.Height = cellSize * bH;
+
+            panel1.Refresh();
+            Board board = new Board(size, bH);
+            Game game = new Game(board, bH, cellSize);
+
+            Pen pen = new Pen(Color.MediumVioletRed, 1f);
+            SolidBrush brush = new SolidBrush(Color.MediumVioletRed);
+            Graphics graphics = panel1.CreateGraphics();
+
+            game.startBoard.setup_random();
+            game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+
+            for (int i = 1; i < iterations; i++)
+            {
+
+                Thread.Sleep(300);
                 panel1.Refresh();
                 game.startBoard.update();
                 game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);

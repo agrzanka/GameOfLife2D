@@ -20,7 +20,6 @@ namespace GameOfLife2D
 
             this.boardH = bH;
             this.cellSize = cellSize;
-           // this.startBoard.update(this.boardH);
         }
 
         public void drawResult(int width, int height, Graphics graphics, Pen pen, SolidBrush brush)
@@ -33,7 +32,7 @@ namespace GameOfLife2D
 
             for (int i = 0; i < boardH; i++)
                 for (int s = 0; s < startBoard.size; s++)
-                    if (startBoard.cells[i, s].Life == true)
+                    if (startBoard.cells[s, i].Life == true)
                         graphics.FillRectangle(brush, s * this.cellSize + 1, i * this.cellSize + 1, this.cellSize - 1, this.cellSize - 1);
 
         }
