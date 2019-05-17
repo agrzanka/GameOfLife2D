@@ -28,8 +28,10 @@ namespace GameOfLife2D
 
             int cellSize = (size > bH) ? maxSize / size : maxSize / bH;
 
-            panel1.Width = cellSize * size;
-            panel1.Height = cellSize * bH;
+            int width = cellSize * size;
+            int height = cellSize * bH;
+            panel1.Width = width;
+            panel1.Height = height;
 
             panel1.Refresh();
             Board board = new Board(size, bH);
@@ -40,7 +42,7 @@ namespace GameOfLife2D
             Graphics graphics = panel1.CreateGraphics();
 
             game.startBoard.setup_glider();
-            game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+            game.drawResult(width, height, graphics, pen, brush);
 
             for (int i=1;i< iterations; i++)
             {
@@ -48,7 +50,7 @@ namespace GameOfLife2D
                 Thread.Sleep(300);
                 panel1.Refresh();
                 game.startBoard.update();
-                game.drawResult(panel1.Width, panel1.Height, graphics, pen, brush);
+                game.drawResult(width, height, graphics, pen, brush);
             }
            
 
